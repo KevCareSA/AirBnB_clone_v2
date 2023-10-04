@@ -40,3 +40,5 @@ def do_deploy(archive_path):
         return False
     if run(f'ln -s {release_dir} {current_dir}').failed:
         return False
+
+    return True
