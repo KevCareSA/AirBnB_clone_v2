@@ -3,6 +3,7 @@
 
 apt-get update
 apt-get install -y nginx
+ufw allow 'Nginx HTTP'
 
 mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/shared/
