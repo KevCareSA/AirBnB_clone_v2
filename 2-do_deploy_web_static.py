@@ -16,29 +16,24 @@ env.hosts = ['54.237.31.51', '100.25.137.176']
 
 def do_deploy(archive_path):
     """deploys archived static content to server"""
-    if not path.exists(archive_path) is False:
-        return False
+    try:
+        if not path.exists(archive_path):
+            return False
 
-    file = archive_path.split('/')[-1]
-    name = file.split('.')[0]
-    release_dir = f'/data/web_static/releases/{name}'
-    current_dir = '/data/web_static/current'
+        file = archive_path.split('/')[-1]
+        name = file.split('.')[0]
+        release_dir = f'/data/web_static/releases/{name}'
+        current_dir = '/data/web_static/current'
 
-    if put(archive_path, '/tmp/').failed:
-        return False
-    if run(f'mkdir -p {release_dir}').failed:
-        return False
-    if run(f'tar -xzf /tmp/{file} -C {release_dir}').failed:
-        return False
-    if run(f'rm /tmp/{file}').failed:
-        return False
-    if run(f'mv {release_dir}/web_static/* {release_dir}/').failed:
-        return False
-    if run(f'rm -rf {release_dir}/web_static').failed:
-        return False
-    if run(f'rm -rf {current_dir}').failed:
-        return False
-    if run(f'ln -s {release_dir} {current_dir}').failed:
+        put(archive_path, '/tmp/')
+        run(f'mkdir -p {release_dir}')
+        run(f'tar -xzf /tmp/{file} -C {release_dir}')
+        run(f'rm /tmp/{file}')
+        run(f'mv {release_dir}/web_static/* {release_dir}/')
+        run(f'rm -rf {release_dir}/web_static')
+        run(f'rm -rf {current_dir}')
+        run(f'ln -s {release_dir} {current_dir}')
+    except Exception:
         return False
 
     return True
