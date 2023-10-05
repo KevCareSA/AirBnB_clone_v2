@@ -16,7 +16,7 @@ env.hosts = ['54.237.31.51', '100.25.137.176']
 
 def do_deploy(archive_path):
     """deploys archived static content to server"""
-    if not path.exists(archive_path):
+    if not path.isfile(archive_path) is False:
         return False
 
     file = archive_path.split('/')[-1]
