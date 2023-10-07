@@ -4,7 +4,7 @@
 a Fabric script (based on the file 2-do_deploy_web_static.py) that creates
 and distributes an archive to your web servers
 
-Author: Bradley Dillion Gilden
+Author: Kevin Mokobane
 Date: 04-10-2023
 """
 from fabric.api import env, run, put, local
@@ -12,7 +12,7 @@ from datetime import datetime
 from os import path
 
 
-env.hosts = ['54.237.31.51', '100.25.137.176']
+env.hosts = ['54.234.70.95', '100.26.235.121']
 
 
 def do_pack():

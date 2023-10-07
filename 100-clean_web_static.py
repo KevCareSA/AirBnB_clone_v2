@@ -3,13 +3,13 @@
 """
 clean up versions
 
-Author: Bradley Dillion Gilden
+Author: Kevin Mokobane
 Date: 05-10-2023
 """
 from fabric.api import local, env, run
 
 
-env.hosts = ['54.237.31.51', '100.25.137.176']
+env.hosts = ['54.234.70.95', '100.26.235.121']
 
 
 def do_clean(number=0):
